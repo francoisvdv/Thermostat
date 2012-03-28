@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    >
+
+    <TextView
+		style="@style/text"
+        android:text="Current temperature is" 
+     />
+    
+         <ImageView
+        android:id="@+id/bAdd"
+        android:src="@drawable/add_button"
+        android:layout_marginTop="20dp"
+        android:layout_width="80px"
+        android:layout_height="80px" />   
+
+    
+    <TextView
+        android:id="@+id/tvTemp"
+        style="@style/text"
+        android:text="20 &#x2103;" 
+     />
+
+         <ImageView
+        android:id="@+id/bSub"
+        android:src="@drawable/minus_button"
+        android:layout_marginTop="20px"
+        android:layout_marginBottom="50px"
+        android:layout_width="80px"
+        android:layout_height="80px" />   
+
+
+    <SeekBar
+        android:id="@+id/seekBar1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+    />
+    
+    <Button 
+        android:id="@+id/week"
+		style="@style/text"
+        android:text="Week Overview"
+        android:textColor="#FF0000"     
+    />    
+
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+        
+    <TextView
+		style="@style/text"
+        android:text="Week Overview" 
+     />
+    
+    <Button 
+        android:id="@+id/bAdd"
+		style="@style/text"
+        android:text="Day 1"     
+    />
+    <Button 
+        android:id="@+id/bAdd"
+		style="@style/text"
+        android:text="Day 2"     
+    />            
+    <Button 
+        android:id="@+id/bAdd"
+		style="@style/text"
+        android:text="Day 3"     
+    />
+    <Button 
+        android:id="@+id/bAdd"
+		style="@style/text"
+        android:text="Day 4"     
+    />     
+    <Button 
+        android:id="@+id/bAdd"
+		style="@style/text"
+        android:text="Day 5"     
+    />
+    <Button 
+        android:id="@+id/bAdd"
+		style="@style/text"
+        android:text="Day 6"     
+    />        
+    <Button 
+        android:id="@+id/bAdd"
+		style="@style/text"
+        android:text="Day 1"     
+    />    
+    <Button 
+        android:id="@+id/bAdd"
+		style="@style/text"
+        android:text="Day 7"     
+    />    
+        
+</LinearLayout>
