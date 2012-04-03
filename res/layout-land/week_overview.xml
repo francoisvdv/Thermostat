@@ -5,53 +5,11 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" 
     android:gravity="center"
-    >    
+    >
 
-    <TextView
-		style="@style/text"
-        android:text="Week Overview" 
-     />
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="horizontal" >     
-    
-    <Button 
-        android:id="@+id/bAdd"
-		style="@style/text"
-        android:text="Day 1"     
-    />
-    <Button 
-        android:id="@+id/bAdd"
-		style="@style/text"
-        android:text="Day 2"     
-    />    
-    <Button 
-        android:id="@+id/bAdd"
-		style="@style/text"
-        android:text="Day 3"     
-    />
-    <Button 
-        android:id="@+id/bAdd"
-		style="@style/text"
-        android:text="Day 4"     
-    />   
-    <Button 
-        android:id="@+id/bAdd"
-		style="@style/text"
-        android:text="Day 5"     
-    />
-    <Button 
-        android:id="@+id/bAdd"
-		style="@style/text"
-        android:text="Day 6"     
-    />   
-    <Button 
-        android:id="@+id/bAdd"
-		style="@style/text"
-        android:text="Day 7"     
-    />
-                   
-    </LinearLayout>      
+    <kankan.wheel.widget.WheelView
+        android:id="@+id/wheelView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+      
 </LinearLayout>
