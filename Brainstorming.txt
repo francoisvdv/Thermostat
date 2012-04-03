@@ -1,0 +1,13 @@
+Idea 1:
+
+Thermostat:
+
+Rotating dials for setting day and night temperature:
+http://android-devblog.blogspot.com/2010/05/wheel-ui-contol.html
+
+Week time scale
+	- Longpress on bar to add a node, longpress on node to remove it.
+	- We place a node at 00:00 that says 'Night to Day' or 'Day to Night' (circumventing vagueness of assignment description)
+	- We have at most five changes from 'Night to Day' and vice versa
+	- When dragging a node, you see the exact time in a popup window above the node. This popup window drags along with the node.
+	
