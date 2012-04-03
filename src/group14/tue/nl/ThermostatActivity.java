@@ -20,18 +20,18 @@ public class ThermostatActivity extends Activity {
 	
     /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {    	
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 //        add = (Button)findViewById(R.id.bAdd);
 //        sub = (Button)findViewById(R.id.bSub);
-        add = (ImageView)findViewById(R.id.bAdd);
-        sub = (ImageView)findViewById(R.id.bSub);
-        week = (Button)findViewById(R.id.week);
-        tvTemp = (TextView)findViewById(R.id.tvTemp);
-        seekBar = (SeekBar)findViewById(R.id.seekBar1);
-        seekBar.setMax(40);
-        seekBar.setProgress(counter);
+//        add = (ImageView)findViewById(R.id.bAdd);
+//        sub = (ImageView)findViewById(R.id.bSub);
+//        week = (Button)findViewById(R.id.week);
+//        tvTemp = (TextView)findViewById(R.id.tvTemp);
+//        seekBar = (SeekBar)findViewById(R.id.seekBar1);
+//        seekBar.setMax(40);
+//        seekBar.setProgress(counter);
         
         week.setOnClickListener(new View.OnClickListener() {
 			
@@ -87,5 +87,6 @@ public class ThermostatActivity extends Activity {
 				
 			}
 		});
+       
     }
 }
