@@ -1,5 +1,6 @@
 package group14.tue.nl;
 
+import kankan.wheel.widget.WheelView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -32,7 +33,6 @@ public class ThermostatActivity extends Activity {
         seekBar = (SeekBar)findViewById(R.id.seekBar1);
         seekBar.setMax(40);
         seekBar.setProgress(counter);
-        
         week.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
