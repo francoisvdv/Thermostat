@@ -1,91 +1,53 @@
 package group14.tue.nl;
 
+import kankan.wheel.R;
 import kankan.wheel.widget.WheelView;
+import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
+import kankan.wheel.widget.adapters.NumericWheelAdapter;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class ThermostatActivity extends Activity {
-	
-	//Button add,sub,week;
-	ImageView add,sub;
-	Button week;
-	TextView tvTemp;
-	int counter = 20;
-	SeekBar seekBar;
+public class ThermostatActivity extends Activity
+{
 	
     /** Called when the activity is first created. */
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-//        add = (Button)findViewById(R.id.bAdd);
-//        sub = (Button)findViewById(R.id.bSub);
-        add = (ImageView)findViewById(R.id.bAdd);
-        sub = (ImageView)findViewById(R.id.bSub);
-        week = (Button)findViewById(R.id.week);
-        tvTemp = (TextView)findViewById(R.id.tvTemp);
-        seekBar = (SeekBar)findViewById(R.id.seekBar1);
-        seekBar.setMax(40);
-        seekBar.setProgress(counter);
-        week.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(v.getContext(), WeekOverview.class);
-				startActivity(intent);
-			}
-		});        
         
+        setUpWheels();
+    }
+    
+    void setUpWheels()
+    {
+        WheelView wheel = (WheelView)findViewById(R.id.wheelDayTemp1);
+        wheel.setVisibleItems(3);
+        wheel.setViewAdapter(new NumericWheelAdapter(this, 5, 30));
+        wheel.setCurrentItem(10);
         
-        add.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				counter++;
-				tvTemp.setText(""+counter+" \u2103");
-				seekBar.setProgress(counter);
-			}
-		});
+        wheel = (WheelView)findViewById(R.id.wheelDayTemp2);
+        wheel.setVisibleItems(3);
+        wheel.setViewAdapter(new NumericWheelAdapter(this, 0, 9));
+        wheel.setCurrentItem(8);
         
-        sub.setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				counter--;
-				tvTemp.setText(""+counter+" \u2103");
-				seekBar.setProgress(counter);
-			}
-		});     
-        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-			
-			@Override
-			public void onStopTrackingTouch(SeekBar seekBar) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void onStartTrackingTouch(SeekBar seekBar) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void onProgressChanged(SeekBar seekBar, int progress,
-					boolean fromUser) {
-				// TODO Auto-generated method stub
-				tvTemp.setText(""+progress+" \u2103");
-				
-			}
-		});
+        wheel = (WheelView)findViewById(R.id.wheelNightTemp1);
+        wheel.setVisibleItems(3);
+        wheel.setViewAdapter(new NumericWheelAdapter(this, 5, 30));
+        wheel.setCurrentItem(10);
+        
+        wheel = (WheelView)findViewById(R.id.wheelNightTemp2);
+        wheel.setVisibleItems(3);
+        wheel.setViewAdapter(new NumericWheelAdapter(this, 0, 9));
+        wheel.setCurrentItem(8);
     }
 }
