@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, HelloThermostatActivity!</string>
     <string name="app_name">Thermostat</string>
+    <string name="currentTempString">Override current temperature</string>
 
 </resources>
