@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -40,14 +41,19 @@ public class ThermostatActivity extends Activity
         wheel.setViewAdapter(new NumericWheelAdapter(this, 0, 9));
         wheel.setCurrentItem(8);
         
-        wheel = (WheelView)findViewById(R.id.wheelNightTemp1);
-        wheel.setVisibleItems(3);
-        wheel.setViewAdapter(new NumericWheelAdapter(this, 5, 30));
-        wheel.setCurrentItem(10);
-        
-        wheel = (WheelView)findViewById(R.id.wheelNightTemp2);
-        wheel.setVisibleItems(3);
-        wheel.setViewAdapter(new NumericWheelAdapter(this, 0, 9));
-        wheel.setCurrentItem(8);
+//        wheel = (WheelView)findViewById(R.id.wheelNightTemp1);
+//        wheel.setVisibleItems(3);
+//        wheel.setViewAdapter(new NumericWheelAdapter(this, 5, 30));
+//        wheel.setCurrentItem(10);
+//        
+//        wheel = (WheelView)findViewById(R.id.wheelNightTemp2);
+//        wheel.setVisibleItems(3);
+//        wheel.setViewAdapter(new NumericWheelAdapter(this, 0, 9));
+//        wheel.setCurrentItem(8);
+    }
+    void setupPicker(){
+    	 DatePicker datePicker = (DatePicker) findViewById(R.id.datePicker1);
+    	 
+
     }
 }
