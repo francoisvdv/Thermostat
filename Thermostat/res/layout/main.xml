@@ -26,8 +26,10 @@
                     android:id="@string/currentTempString"
                     android:layout_width="357dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/currentTempString"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:text="OVERRIDE CURRENT TEMPERATURE"
+                    android:textAppearance="?android:attr/textAppearanceLarge" 
+                    android:gravity="center_vertical|center_horizontal" android:textColor="#454546"/>
+                
 
                 <LinearLayout
                     android:layout_width="355dp"
@@ -38,16 +40,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1.10"
-                        android:minHeight="200px"
-                        android:minWidth="100px" />
-
-                    <kankan.wheel.widget.WheelView
-                        android:id="@+id/wheelDayTemp2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.21"
-                        android:minHeight="200px"
-                        android:minWidth="50px" />
+                        android:minHeight="266dp"
+                        android:minWidth="133dp" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -56,45 +50,176 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.39"
-                    android:orientation="vertical" >
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.00"
-                    android:orientation="vertical" >
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.34"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Actual Temperature"
+                        android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="#454546" android:paddingLeft="20dp"/>
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="100dp"
+                        android:text="20 ºC"
+                        android:textAppearance="?android:attr/textAppearanceMedium" android:textSize="50dp" android:textColor="#000000"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="75dp" >
-
+                        android:layout_height="wrap_content" >
+
                         <TextView
-                            android:id="@+id/textView1"
+                            android:id="@+id/dayTempDispLabel"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="Large Text"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:layout_height="104dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:paddingLeft="35dp"
+                            android:text="Day Temperature  "
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            android:textColor="#454546" />
 
-                        <DatePicker
-                            android:id="@+id/datePicker1"
+                        <EditText
+                            android:id="@+id/dayDisp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:cursorVisible="false"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:inputType="numberDecimal"
+                            android:textIsSelectable="false" >
+
+                            <requestFocus />
+                        </EditText>
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:endYear="30"
-                            android:maxDate="30"
-                            android:startYear="5"
-                            android:visibility="visible" />
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
 
-                        <TimePicker
-                            android:id="@+id/timePicker1"
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:orientation="vertical" >
+
+                                <Button
+                                    android:id="@+id/dayTempInc"
+                                    android:layout_width="54dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="0dip"
+                                    android:lineSpacingExtra="0pt"
+                                    android:lineSpacingMultiplier="1"
+                                    android:padding="0dip"
+                                    android:requiresFadingEdge="none"
+                                    android:text="+" />
+
+                                <Button
+                                    android:id="@+id/dayTempDec"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="-" />
+
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/button2"
+                                android:layout_width="54dp"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="0pt"
+                                android:lineSpacingMultiplier="1"
+                                android:text="+" />
+
+                            <Button
+                                android:id="@+id/button1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="-" />
+
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/nightTempDispLabel"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="104dp"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:text="Night Temperature  "
+                            android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="#454546" android:paddingLeft="35dp"/>
+
+                        <EditText
+                            android:id="@+id/nightDisp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_weight="0.00"
+                            android:cursorVisible="false"
+                            android:ems="10"
+                            android:focusable="false"
+                            android:inputType="numberDecimal"
+                            android:textIsSelectable="false" />
 
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:gravity="center_vertical|center_horizontal"
+                            android:orientation="vertical" >
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:orientation="vertical" >
+
+                                <Button
+                                    android:id="@+id/nightDec"
+                                    android:layout_width="54dp"
+                                    android:layout_height="wrap_content"
+                                    android:text="+" />
+
+                                <Button
+                                    android:id="@+id/nightTempDec"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="-" />
+
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/Button04"
+                                android:layout_width="54dp"
+                                android:layout_height="wrap_content"
+                                android:lineSpacingExtra="0pt"
+                                android:lineSpacingMultiplier="1"
+                                android:text="+" />
+
+                            <Button
+                                android:id="@+id/Button03"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="-" />
+
+                        </LinearLayout>
+
+                        <CheckBox
+                            android:id="@+id/vacationCb"
+                            android:layout_width="wrap_content"
+                            android:layout_height="119dp"
+                            android:text="Vacation Mode"
+                            android:textSize="10pt" android:textColor="#454546" android:layout_marginLeft="20dp"/>
                     </LinearLayout>
 
                 </LinearLayout>
