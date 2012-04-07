@@ -4,7 +4,7 @@
     <string name="hello">Hello World, HelloThermostatActivity!</string>
     <string name="app_name">Thermostat</string>
     <string name="currentTempString">Override current temperature</string>
-    <string name="label_nighttime">Night Temperature</string>
-    <string name="label_daytime">Day Temperature</string>
+    <string name="label_nighttime">Set Night Temperature</string>
+    <string name="label_daytime">Set Day Temperature</string>
 
 </resources>
