@@ -11,14 +11,14 @@
         android:layout_height="match_parent"
         android:columnCount="4"
         android:rowCount="3" >
-
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="fill_horizontal" >
-
+
             <LinearLayout
-                android:layout_width="359dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
@@ -38,16 +38,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1.10"
-                        android:minHeight="200px"
-                        android:minWidth="100px" />
+                         />
 
                     <kankan.wheel.widget.WheelView
                         android:id="@+id/wheelDayTemp2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="0.21"
-                        android:minHeight="200px"
-                        android:minWidth="50px" />
+                        />
 
                 </LinearLayout>
             </LinearLayout>
@@ -80,18 +78,9 @@
                             android:layout_height="match_parent"
                             android:text="Large Text"
                             android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
                         <DatePicker
                             android:id="@+id/datePicker1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:endYear="30"
-                            android:maxDate="30"
-                            android:startYear="5"
-                            android:visibility="visible" />
-
-                        <TimePicker
-                            android:id="@+id/timePicker1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 
