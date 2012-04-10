@@ -15,7 +15,7 @@ import android.widget.TableLayout.LayoutParams;
 
 public class PinView extends View
 {
-	int fillColor;
+	public int fillColor;
 	
 	public int index;
 	
@@ -30,14 +30,14 @@ public class PinView extends View
 		setMinimumHeight(30);
 	}
 	
-	public void setDayColor()
+	public void setDay()
 	{
-		fillColor = Color.GRAY;
+		fillColor = Color.rgb(113, 128, 151);
 		invalidate();
 	}
 	public void setNight()
 	{
-		fillColor = Color.BLACK;
+		fillColor = Color.rgb(33, 42, 63);
 		invalidate();
 	}
 	

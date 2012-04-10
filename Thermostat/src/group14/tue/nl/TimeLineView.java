@@ -1,6 +1,7 @@
 package group14.tue.nl;
 
 import java.util.ArrayList;
+import java.util.SortedMap;
 
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.ArrayWheelAdapter;
@@ -10,6 +11,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -21,10 +23,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+
 public class TimeLineView extends RelativeLayout implements OnLongClickListener
 {
-	public final ArrayList<Integer> minutes = new ArrayList<Integer>();
-	public final ArrayList<PinView> pins = new ArrayList<PinView>();
+	public final ArrayList<Pin> pins = new ArrayList<Pin>();
+	public final ArrayList<PinView> pinViews = new ArrayList<PinView>();
+	
+	final int pinWidth = 30;
+	final int pinHeight = 60;
 	
 	TextView tv;
 
@@ -37,31 +43,33 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 		setMinimumHeight(65);
 		setOnLongClickListener(this);
 		
-		
-		PinView pin = createPin(false);
-		pin.setNight();
-		addView(pin);
+		pins.add(new Pin(0, false));
+		rebuildPins();
 	}
 	
 	public void rebuildPins()
 	{
-		for(PinView p : pins)
+		for(PinView p : pinViews)
 		{
 			removeView(p);
 		}
-		pins.clear();
+		pinViews.clear();
 		
-		for(int i : minutes)
+		boolean night = true;
+		
+		for(Pin p : pins)
 		{
-			float max = 24 * 60;
+			float posX = timeToPosX(p.time);
 			
-			float a = i / max;
+			PinView pv = createPin(pins.indexOf(p) != 0);
+			pv.index = pins.indexOf(p);
+			pv.setX(posX - pinWidth / 2);
 			
-			float posX = a * getWidth();
+			if(night)
+				pv.setNight();
+			else
+				pv.setDay();
 			
-			PinView pv = createPin(true);
-			pv.index = i;
-			pv.setX(posX - pv.getWidth() / 2);
 			addView(pv);
 		}
 	}
@@ -69,17 +77,15 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 	public PinView createPin(boolean removeOnHold)
 	{
 		final PinView imgBtn = new PinView(getContext(), null);
-		imgBtn.setLayoutParams(new LayoutParams(30, 60));
+		imgBtn.setLayoutParams(new LayoutParams(pinWidth, pinHeight));
 		if(removeOnHold)
 		{
 			imgBtn.setOnLongClickListener(new OnLongClickListener()
 			{
-				
 				@Override
 				public boolean onLongClick(View v)
 				{
-					// TODO Auto-generated method stub
-					minutes.remove(imgBtn.index);
+					pins.remove(imgBtn.index);
 					
 					rebuildPins();
 					return false;
@@ -89,7 +95,6 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 		return imgBtn;
 	}
 	
-
 	@Override
 	public boolean onLongClick(View v)
 	{
@@ -117,7 +122,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 			@Override
 			public void onClick(View v)
 			{
-				minutes.add(wheel1.getCurrentItem() * 60 + wheel2.getCurrentItem());
+				pins.add(new Pin(wheel1.getCurrentItem() * 60 + wheel2.getCurrentItem(), !pins.get(pins.size() - 1).day));
 				dialog.dismiss();
 				
 				rebuildPins();
@@ -134,5 +139,40 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 	{
 		// TODO Auto-generated method stub
 		super.onDraw(canvas);
+		
+		Paint paint = new Paint();
+		
+		for(Pin p : pins)
+		{
+			paint.setColor(p.day ? getDayColor() : getNightColor());
+			
+			int nextIndex = pins.indexOf(p) + 1;
+			
+			float nextX = 0;
+			if(nextIndex >= pins.size())
+				nextX = getWidth();
+			else
+				nextX = timeToPosX(pins.get(nextIndex).time);
+			
+			float posX = timeToPosX(p.time);
+			canvas.drawRect(posX, 26, nextX, getHeight() - 5, paint);
+		}
+		
+	}
+	
+	float timeToPosX(int time)
+	{
+		float max = 24 * 60;
+		
+		float a = time / max;
+		return a * getWidth();
+	}
+	int getDayColor()
+	{
+		return Color.rgb(113, 128, 151);
+	}
+	int getNightColor()
+	{
+		return Color.rgb(33, 42, 63);
 	}
 }
