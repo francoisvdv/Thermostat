@@ -1,6 +1,8 @@
 package group14.tue.nl;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.SortedMap;
 
 import kankan.wheel.widget.WheelView;
@@ -15,22 +17,29 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnLongClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
-public class TimeLineView extends RelativeLayout implements OnLongClickListener
+public class TimeLineView extends RelativeLayout implements OnLongClickListener, OnTouchListener
 {
 	public final ArrayList<Pin> pins = new ArrayList<Pin>();
 	public final ArrayList<PinView> pinViews = new ArrayList<PinView>();
 	
 	final int pinWidth = 30;
 	final int pinHeight = 60;
+	
+	float mouseX;
+	float mouseY;
 	
 	TextView tv;
 
@@ -41,6 +50,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 
 		setWillNotDraw(false);
 		setMinimumHeight(65);
+		setOnTouchListener(this);
 		setOnLongClickListener(this);
 		
 		pins.add(new Pin(0, false));
@@ -49,27 +59,55 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 	
 	public void rebuildPins()
 	{
-		for(PinView p : pinViews)
+		for(PinView pv : pinViews)
 		{
-			removeView(p);
+			try
+			{
+			((ViewGroup)pv.getParent()).removeView(pv);
+			}
+			catch(Exception exc)
+			{
+				Toast t = Toast.makeText(getContext(), exc.getMessage(), 2000);
+				t.show();
+			}
 		}
 		pinViews.clear();
 		
-		boolean night = true;
+		Collections.sort(pins, new Comparator<Pin>()
+		{
+			@Override
+            public int compare(Pin p1, Pin p2)
+            {
+                if (p1.time > p2.time){
+                    return +1;
+                }else if (p1.time < p2.time){
+                    return -1;
+                }else{
+                    return 0;
+                }
+            }
+        });
 		
+		boolean day = false;
+
 		for(Pin p : pins)
 		{
+			p.day = day;
+			
 			float posX = timeToPosX(p.time);
 			
 			PinView pv = createPin(pins.indexOf(p) != 0);
-			pv.index = pins.indexOf(p);
+			pv.pin = p;
 			pv.setX(posX - pinWidth / 2);
 			
-			if(night)
-				pv.setNight();
-			else
+			if(day)
 				pv.setDay();
+			else
+				pv.setNight();
 			
+			day = !day;
+			
+			pinViews.add(pv);
 			addView(pv);
 		}
 	}
@@ -85,7 +123,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 				@Override
 				public boolean onLongClick(View v)
 				{
-					pins.remove(imgBtn.index);
+					pins.remove(imgBtn.pin);
 					
 					rebuildPins();
 					return false;
@@ -94,7 +132,14 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 		}
 		return imgBtn;
 	}
-	
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event)
+	{
+		mouseX = event.getX();
+		mouseY = event.getY();
+		return false;
+	}
 	@Override
 	public boolean onLongClick(View v)
 	{
@@ -104,27 +149,28 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 		final Dialog dialog = new Dialog(mContext);
 
 		dialog.setContentView(R.layout.pindialog);
-
+		dialog.setTitle("Pick Time");
+		
 		final WheelView wheel1 = (WheelView)dialog.findViewById(R.id.time1);
 		final WheelView wheel2 = (WheelView)dialog.findViewById(R.id.time2);
+
+		int time = posXToTime(mouseX);
 		
 		wheel1.setViewAdapter(new NumericWheelAdapter(mContext, 0, 23));
-		wheel1.setCurrentItem(17);
+		wheel1.setCurrentItem(time / 60);
 		
 		wheel2.setViewAdapter(new NumericWheelAdapter(mContext, 0, 59));
-		wheel2.setCurrentItem(0);
+		wheel2.setCurrentItem(time % 60);
 		
 		Button acceptBtn = (Button)dialog.findViewById(R.id.acceptBtn);
-		Button cancelBtn = (Button)dialog.findViewById(R.id.cancelBtn);
-		
 		acceptBtn.setOnClickListener(new OnClickListener()
 		{
 			@Override
 			public void onClick(View v)
 			{
-				pins.add(new Pin(wheel1.getCurrentItem() * 60 + wheel2.getCurrentItem(), !pins.get(pins.size() - 1).day));
 				dialog.dismiss();
 				
+				pins.add(new Pin(wheel1.getCurrentItem() * 60 + wheel2.getCurrentItem(), true));
 				rebuildPins();
 			}
 		});
@@ -166,6 +212,13 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener
 		
 		float a = time / max;
 		return a * getWidth();
+	}
+	int posXToTime(float posX)
+	{
+		float max = getWidth();
+		
+		float a = posX / max;
+		return (int)(a * (24 * 60));
 	}
 	int getDayColor()
 	{

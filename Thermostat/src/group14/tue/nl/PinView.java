@@ -16,8 +16,7 @@ import android.widget.TableLayout.LayoutParams;
 public class PinView extends View
 {
 	public int fillColor;
-	
-	public int index;
+	public Pin pin;
 	
 	public PinView(Context context, AttributeSet attrs)
 	{

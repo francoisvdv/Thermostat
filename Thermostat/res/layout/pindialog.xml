@@ -4,13 +4,6 @@
     android:layout_height="300px"
     android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time for new pin:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="200px" android:layout_gravity="center_horizontal">
@@ -38,19 +31,13 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="50px" android:layout_gravity="right">
+        android:layout_height="50px" android:layout_gravity="right" android:layout_marginTop="10px">
 
         <Button
             android:id="@+id/acceptBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Accept" />
-
-        <Button
-            android:id="@+id/cancelBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancel" />
+            android:text="Accept"/>
 
     </LinearLayout>
 
