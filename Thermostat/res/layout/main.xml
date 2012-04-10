@@ -5,18 +5,35 @@
     android:background="@drawable/bg"
     android:gravity="center"
     android:orientation="horizontal" >
-
+
+
+
+
+
+
+
+
+
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:columnCount="4"
         android:rowCount="3" >
-
+
+
+
+
+
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="fill_horizontal" >
-
+
+
             <LinearLayout
                 android:layout_width="359dp"
                 android:layout_height="match_parent"
@@ -34,7 +51,8 @@
                 <LinearLayout
                     android:layout_width="355dp"
                     android:layout_height="match_parent" >
-
+
+
                     <kankan.wheel.widget.WheelView
                         android:id="@+id/wheelDayTemp1"
                         android:layout_width="wrap_content"
@@ -45,12 +63,16 @@
 
                 </LinearLayout>
             </LinearLayout>
-
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
-
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,16 +83,11 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
                         android:text="Actual Temperature"
-                        android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="#454546" android:paddingLeft="20dp"/>
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textColor="#454546" />
 
-                    <TextView
-                        android:id="@+id/testText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Medium Text"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
@@ -82,79 +99,206 @@
                         android:textSize="50dp" />
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="882dp"
                         android:layout_height="fill_parent"
-                        android:orientation="vertical" >
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <group14.tue.nl.TimeLineView
-                            android:id="@+id/timeLineView1"
-                            android:layout_width="fill_parent"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content" >
-                        </group14.tue.nl.TimeLineView>
 
-                        <group14.tue.nl.TimeLineView
-                            android:id="@+id/timeLineView2"
-                            android:layout_width="fill_parent"
+                            <TextView
+                                android:id="@+id/textView1"
+                                android:layout_width="61dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:text="Mon"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#454546" />
+
+                            <group14.tue.nl.TimeLineView
+                                android:id="@+id/timeLineView1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" >
+                            </group14.tue.nl.TimeLineView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content" >
-                        </group14.tue.nl.TimeLineView>
 
-                        <group14.tue.nl.TimeLineView
-                            android:id="@+id/timeLineView3"
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content">
-                        </group14.tue.nl.TimeLineView>
+                            <TextView
+                                android:id="@+id/TextView01"
+                                android:layout_width="61dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:text="Tue"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#454546" />
 
-                        <group14.tue.nl.TimeLineView
-                            android:id="@+id/timeLineView4"
-                            android:layout_width="fill_parent"
+                            <group14.tue.nl.TimeLineView
+                                android:id="@+id/timeLineView2"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" >
+                            </group14.tue.nl.TimeLineView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content" >
-                        </group14.tue.nl.TimeLineView>
 
-                        <group14.tue.nl.TimeLineView
-                            android:id="@+id/timeLineView5"
-                            android:layout_width="fill_parent"
+                            <TextView
+                                android:id="@+id/TextView02"
+                                android:layout_width="61dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:text="Wen"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#454546" />
+
+                            <group14.tue.nl.TimeLineView
+                                android:id="@+id/timeLineView3"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" >
+                            </group14.tue.nl.TimeLineView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content" >
-                        </group14.tue.nl.TimeLineView>
 
-                        <group14.tue.nl.TimeLineView
-                            android:id="@+id/timeLineView6"
-                            android:layout_width="fill_parent"
+                            <TextView
+                                android:id="@+id/TextView03"
+                                android:layout_width="61dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:text="Thu"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#454546" />
+
+                            <group14.tue.nl.TimeLineView
+                                android:id="@+id/timeLineView4"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" >
+                            </group14.tue.nl.TimeLineView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content" >
-                        </group14.tue.nl.TimeLineView>
 
-                        <group14.tue.nl.TimeLineView
-                            android:id="@+id/timeLineView7"
-                            android:layout_width="fill_parent"
+                            <TextView
+                                android:id="@+id/TextView04"
+                                android:layout_width="61dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:text="Fri"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#454546" />
+
+                            <group14.tue.nl.TimeLineView
+                                android:id="@+id/timeLineView5"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" >
+                            </group14.tue.nl.TimeLineView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content" >
-                        </group14.tue.nl.TimeLineView>
 
+                            <TextView
+                                android:id="@+id/TextView05"
+                                android:layout_width="61dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:text="Sat"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#454546" />
+
+                            <group14.tue.nl.TimeLineView
+                                android:id="@+id/timeLineView6"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" >
+                            </group14.tue.nl.TimeLineView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/TextView06"
+                                android:layout_width="61dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical|center_horizontal"
+                                android:text="Sun"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#454546" />
+
+                            <group14.tue.nl.TimeLineView
+                                android:id="@+id/timeLineView7"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content" >
+                            </group14.tue.nl.TimeLineView>
+                        </LinearLayout>
                     </LinearLayout>
-
                 </LinearLayout>
-
+
+
+
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
-
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="92dp" >
-
+
+
+
+
+
+
                         <TextView
                             android:id="@+id/dayTempDispLabel"
-                            android:layout_width="208dp"
-                            android:layout_height="104dp"
+                            android:layout_width="164dp"
+                            android:layout_height="match_parent"
                             android:gravity="center_vertical|center_horizontal"
                             android:paddingLeft="30dp"
                             android:text="Set Day Temperature  "
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#454546" />
-
+
+
+
+
+
+
+
+
                         <EditText
                             android:id="@+id/dayDisp"
                             android:layout_width="100dp"
-                            android:layout_height="72dp"
+                            android:layout_height="match_parent"
                             android:cursorVisible="false"
                             android:ems="10"
                             android:focusable="false"
@@ -175,7 +319,11 @@
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical|center_horizontal"
                                 android:orientation="vertical" >
-
+
+
+
+
+
                                 <Button
                                     android:id="@+id/dayTempInc"
                                     android:layout_width="54dp"
@@ -186,7 +334,11 @@
                                     android:padding="0dip"
                                     android:requiresFadingEdge="none"
                                     android:text="+" />
-
+
+
+
+
+
                                 <Button
                                     android:id="@+id/dayTempDec"
                                     android:layout_width="match_parent"
@@ -196,26 +348,39 @@
                             </LinearLayout>
                         </LinearLayout>
 
+
+
+
                         <ImageView
                             android:id="@+id/imageView1"
-                            android:layout_width="wrap_content"
+                            android:layout_width="80dp"
                             android:layout_height="111dp"
                             android:src="@drawable/verticalbar" />
-
+
+
+
+
+
+
+
+
+
+
                         <TextView
                             android:id="@+id/nightTempDispLabel"
-                            android:layout_width="205dp"
-                            android:layout_height="104dp"
+                            android:layout_width="135dp"
+                            android:layout_height="match_parent"
                             android:gravity="center_vertical|center_horizontal"
-                            android:paddingLeft="20dp"
                             android:text="Set Night Temperature  "
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textColor="#454546" />
-
+
+
+
                         <EditText
                             android:id="@+id/nightDisp"
                             android:layout_width="100dp"
-                            android:layout_height="71dp"
+                            android:layout_height="match_parent"
                             android:cursorVisible="false"
                             android:ems="10"
                             android:focusable="false"
@@ -262,12 +427,15 @@
                                 android:text="-" />
                         </LinearLayout>
 
+
+
                         <ImageView
                             android:id="@+id/ImageView01"
-                            android:layout_width="wrap_content"
+                            android:layout_width="68dp"
                             android:layout_height="111dp"
                             android:src="@drawable/verticalbar" />
-
+
+
                         <CheckBox
                             android:id="@+id/vacationCb"
                             android:layout_width="match_parent"
@@ -278,7 +446,7 @@
                             android:textSize="10pt" />
 
                     </LinearLayout>
-
+ 
                 </LinearLayout>
             </LinearLayout>
 
@@ -290,7 +458,8 @@
             android:layout_column="0"
             android:layout_gravity="fill_horizontal"
             android:layout_row="1" />
-
+
+
         <Space
             android:layout_width="1200dp"
             android:layout_height="1dp"
