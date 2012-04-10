@@ -39,7 +39,8 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	final int pinHeight = 60;
 	
 	float mouseX;
-	float mouseY;
+
+	boolean startDay = false;
 	
 	TextView tv;
 
@@ -52,8 +53,8 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 		setMinimumHeight(65);
 		setOnTouchListener(this);
 		setOnLongClickListener(this);
-		
-		pins.add(new Pin(0, false));
+
+		pins.add(new Pin(0, startDay));
 		rebuildPins();
 	}
 	
@@ -80,7 +81,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
             }
         });
 		
-		boolean day = false;
+		boolean day = startDay;
 
 		for(Pin p : pins)
 		{
@@ -106,30 +107,43 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	
 	public PinView createPin(boolean removeOnHold)
 	{
-		final PinView imgBtn = new PinView(getContext(), null);
-		imgBtn.setLayoutParams(new LayoutParams(pinWidth, pinHeight));
+		final PinView pinView = new PinView(getContext(), null);
+		pinView.setLayoutParams(new LayoutParams(pinWidth, pinHeight));
 		if(removeOnHold)
 		{
-			imgBtn.setOnLongClickListener(new OnLongClickListener()
+			pinView.setOnLongClickListener(new OnLongClickListener()
 			{
 				@Override
 				public boolean onLongClick(View v)
 				{
-					pins.remove(imgBtn.pin);
+					pins.remove(pinView.pin);
 					
 					rebuildPins();
 					return true;
 				}
 			});
 		}
-		return imgBtn;
+		else
+		{
+			pinView.setOnLongClickListener(new OnLongClickListener()
+			{
+				@Override
+				public boolean onLongClick(View v)
+				{
+					startDay = !startDay;
+
+					rebuildPins();
+					return true;
+				}
+			});
+		}
+		return pinView;
 	}
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event)
 	{
 		mouseX = event.getX();
-		mouseY = event.getY();
 		return false;
 	}
 	@Override
