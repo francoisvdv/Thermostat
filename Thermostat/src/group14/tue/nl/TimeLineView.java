@@ -61,15 +61,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	{
 		for(PinView pv : pinViews)
 		{
-			try
-			{
 			((ViewGroup)pv.getParent()).removeView(pv);
-			}
-			catch(Exception exc)
-			{
-				Toast t = Toast.makeText(getContext(), exc.getMessage(), 2000);
-				t.show();
-			}
 		}
 		pinViews.clear();
 		
@@ -126,7 +118,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 					pins.remove(imgBtn.pin);
 					
 					rebuildPins();
-					return false;
+					return true;
 				}
 			});
 		}
