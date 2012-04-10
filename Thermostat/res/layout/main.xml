@@ -63,6 +63,13 @@
                         android:layout_height="wrap_content"
                         android:text="Actual Temperature"
                         android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="#454546" android:paddingLeft="20dp"/>
+
+                    <TextView
+                        android:id="@+id/testText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Medium Text"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
 
                     <TextView
                         android:id="@+id/textView4"
@@ -73,11 +80,55 @@
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textColor="#000000"
                         android:textSize="50dp" />
-
-                    <group14.tue.nl.PinView
-                        android:id="@+id/pinView1"
-                        android:layout_width="121dp"
-                        android:layout_height="206dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="vertical" >
+
+                        <group14.tue.nl.TimeLineView
+                            android:id="@+id/timeLineView1"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+                        </group14.tue.nl.TimeLineView>
+
+                        <group14.tue.nl.TimeLineView
+                            android:id="@+id/timeLineView2"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+                        </group14.tue.nl.TimeLineView>
+
+                        <group14.tue.nl.TimeLineView
+                            android:id="@+id/timeLineView3"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content">
+                        </group14.tue.nl.TimeLineView>
+
+                        <group14.tue.nl.TimeLineView
+                            android:id="@+id/timeLineView4"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+                        </group14.tue.nl.TimeLineView>
+
+                        <group14.tue.nl.TimeLineView
+                            android:id="@+id/timeLineView5"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+                        </group14.tue.nl.TimeLineView>
+
+                        <group14.tue.nl.TimeLineView
+                            android:id="@+id/timeLineView6"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+                        </group14.tue.nl.TimeLineView>
+
+                        <group14.tue.nl.TimeLineView
+                            android:id="@+id/timeLineView7"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content" >
+                        </group14.tue.nl.TimeLineView>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 

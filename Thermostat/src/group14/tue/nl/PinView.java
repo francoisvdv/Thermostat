@@ -9,11 +9,15 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TableLayout.LayoutParams;
 
 public class PinView extends View
 {
 	int fillColor;
+	
+	public int index;
 	
 	public PinView(Context context, AttributeSet attrs)
 	{

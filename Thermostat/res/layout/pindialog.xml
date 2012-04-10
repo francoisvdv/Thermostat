@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300px"
+    android:layout_height="300px"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time for new pin:"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="200px" android:layout_gravity="center_horizontal">
+
+        <kankan.wheel.widget.WheelView
+            android:id="@+id/time1"
+            android:layout_width="75px"
+            android:layout_height="fill_parent"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:textAppearance="?android:attr/textAppearanceLarge" android:layout_gravity="center_vertical" android:layout_marginLeft="10px" android:layout_marginRight="10px"/>
+
+        <kankan.wheel.widget.WheelView
+            android:id="@+id/time2"
+            android:layout_width="75px"
+            android:layout_height="fill_parent"
+            android:minHeight="266dp"
+            android:minWidth="133dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50px" android:layout_gravity="right">
+
+        <Button
+            android:id="@+id/acceptBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Accept" />
+
+        <Button
+            android:id="@+id/cancelBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel" />
+
+    </LinearLayout>
+
+</LinearLayout>
