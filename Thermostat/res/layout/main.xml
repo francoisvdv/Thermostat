@@ -79,24 +79,57 @@
                     android:layout_weight="0.34"
                     android:orientation="vertical" >
 
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="20dp"
-                        android:text="Actual Temperature"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="#454546" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:layout_marginTop="5px" android:layout_marginBottom="5px">
 
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="100dp"
-                        android:text="20 ºC"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:textColor="#000000"
-                        android:textSize="50dp" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" android:layout_marginLeft="10px" android:layout_marginRight="10px">
+
+                            <TextView
+                                android:id="@+id/TextView07"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Actual Temperature"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#454546" android:layout_gravity="center_horizontal"/>
+
+                            <TextView
+                                android:id="@+id/actualTempText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="20 ºC"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="#000000"
+                                android:textSize="50dp" android:layout_gravity="center_horizontal"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical" android:layout_marginLeft="10px" android:layout_marginRight="10px">
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Actual Time"
+                                android:textAppearance="?android:attr/textAppearanceLarge"
+                                android:textColor="#454546" android:layout_gravity="center_horizontal"/>
+
+                            <TextView
+                                android:id="@+id/actualTimeText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="00:00"
+                                android:textAppearance="?android:attr/textAppearanceMedium"
+                                android:textColor="#000000"
+                                android:textSize="50dp" android:layout_gravity="center_horizontal"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="882dp"
@@ -244,6 +277,7 @@
                             </group14.tue.nl.TimeLineView>
                         </LinearLayout>
                     </LinearLayout>
+
                 </LinearLayout>
 
 

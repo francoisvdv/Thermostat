@@ -106,7 +106,7 @@ public class ThermostatActivity extends Activity
     }
     void setUpWheels()
     {
-    	final TextView currentTemp = (TextView)findViewById(R.id.textView4);
+    	final TextView currentTemp = (TextView)findViewById(R.id.actualTempText);
         final WheelView tempWheel = (WheelView)findViewById(R.id.wheelDayTemp1);
         double mintemp, maxtemp, increment;
                
