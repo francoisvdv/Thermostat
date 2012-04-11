@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300px"
-    android:layout_height="300px"
-    android:orientation="vertical" >
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="200px" android:layout_gravity="center_horizontal">
+        android:layout_height="175px" android:layout_gravity="center_horizontal">
 
         <kankan.wheel.widget.WheelView
             android:id="@+id/time1"
@@ -23,22 +23,14 @@
         <kankan.wheel.widget.WheelView
             android:id="@+id/time2"
             android:layout_width="75px"
-            android:layout_height="fill_parent"
-            android:minHeight="266dp"
-            android:minWidth="133dp" />
+            android:layout_height="fill_parent"/>
 
     </LinearLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/acceptBtn"
         android:layout_width="wrap_content"
-        android:layout_height="50px" android:layout_gravity="right" android:layout_marginTop="10px">
-
-        <Button
-            android:id="@+id/acceptBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Accept"/>
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="Accept" android:layout_gravity="right" android:layout_marginRight="10px" android:layout_marginTop="15px" android:layout_marginBottom="10px"/>
 
 </LinearLayout>

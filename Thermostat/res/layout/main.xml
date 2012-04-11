@@ -139,7 +139,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Long press on one of the time lines to add a temperature switch. Long press on a pin to remove it. To change the fixed midnight switch, long press the half pin."
-                            android:textAppearance="?android:attr/textAppearanceMedium" android:layout_gravity="center_vertical"/>
+                            android:textAppearance="?android:attr/textAppearanceMedium" android:layout_gravity="center_vertical" android:layout_marginLeft="30px" android:layout_marginRight="30px"/>
 
                     </LinearLayout>
 
