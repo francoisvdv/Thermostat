@@ -149,9 +149,15 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	@Override
 	public boolean onLongClick(View v)
 	{
-		// TODO Auto-generated method stub
-		
 		Context mContext = getContext();
+		
+		if(pins.size() >= 11)
+		{
+			Toast msg = Toast.makeText(mContext, "You can add only up to 5 day-to-night and 5 night-to-day transitions to one day.", 3000);
+			msg.show();
+			return true;
+		}
+
 		final Dialog dialog = new Dialog(mContext);
 
 		dialog.setContentView(R.layout.pindialog);
@@ -183,7 +189,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 		
 		dialog.show();
 		
-		return false;
+		return true;
 	}
 	
 	@Override
