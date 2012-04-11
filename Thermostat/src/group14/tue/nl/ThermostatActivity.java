@@ -11,23 +11,30 @@ import kankan.wheel.widget.OnWheelScrollListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 import android.app.Activity;
-import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.method.DateTimeKeyListener;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
+import android.widget.LinearLayout;
 
 
 public class ThermostatActivity extends Activity
 {
+    Handler clock;
+    public static int day; //0 to 6
+    public static int minute; //0 to 59
+    public static boolean override;
+    
     private boolean scrolling = false;
     double dayTemp = 22;
     double nightTemp = 18;
 
-    Handler clock;
-    public static int day; //0 to 6
-    public static int minute; //0 to 59
     
     /** Called when the activity is first created. */
     @Override
@@ -38,6 +45,7 @@ public class ThermostatActivity extends Activity
         setUpWheels();
         setUpTempSelectors();
         setUpTimeLines();
+        setUpOverrideEvents();
         
         Calendar cal = Calendar.getInstance();
         day = cal.get(Calendar.MONDAY) - 2;
@@ -133,7 +141,7 @@ public class ThermostatActivity extends Activity
     void setUpWheels()
     {
     	final TextView currentTemp = (TextView)findViewById(R.id.actualTempText);
-        final WheelView tempWheel = (WheelView)findViewById(R.id.wheelDayTemp1);
+        final WheelView tempWheel = (WheelView)findViewById(R.id.tempWheel);
         double mintemp, maxtemp, increment;
                
         mintemp = 5;
@@ -149,22 +157,29 @@ public class ThermostatActivity extends Activity
         tempWheel.setViewAdapter(new ArrayWheelAdapter<Double>(this, temperatures ));
         tempWheel.setCurrentItem(170);
         
-        tempWheel.addChangingListener(new OnWheelChangedListener() {
-			public void onChanged(WheelView tempWheel, int oldValue, int newValue) {
-			    if (scrolling) {
+        tempWheel.addChangingListener(new OnWheelChangedListener() 
+        {
+        	@Override
+			public void onChanged(WheelView tempWheel, int oldValue, int newValue)
+			{
+			    if (scrolling)
+			    {
 			        currentTemp.setText(Double.toString(temperatures[newValue])+" \u2103");
-			        
 			    }
 			}
 		});
         
-        tempWheel.addScrollingListener( new OnWheelScrollListener() {
-            public void onScrollingStarted(WheelView tempWheel) {
+        tempWheel.addScrollingListener( new OnWheelScrollListener()
+        {
+        	@Override
+            public void onScrollingStarted(WheelView tempWheel)
+            {
                 scrolling = true;
             }
-            public void onScrollingFinished(WheelView tempWheel) {
+            @Override
+            public void onScrollingFinished(WheelView tempWheel)
+            {
                 scrolling = false;
-                
             }
         });
         
@@ -179,10 +194,55 @@ public class ThermostatActivity extends Activity
     	((TimeLineView)findViewById(R.id.timeLineView6)).dayIndex = 5;
     	((TimeLineView)findViewById(R.id.timeLineView7)).dayIndex = 6;
     }
+    void setUpOverrideEvents()
+    {
+    	final WheelView tempWheel = (WheelView)findViewById(R.id.tempWheel);
+        tempWheel.addScrollingListener(new OnWheelScrollListener()
+        {
+			@Override
+			public void onScrollingStarted(WheelView wheel)
+			{
+				enableOverride();
+			}
+			
+        	@Override
+            public void onScrollingFinished(WheelView tempWheel){}
+        });
+        
+        final Button disableOverrideButton = (Button)findViewById(R.id.disableOverrideButton);
+        disableOverrideButton.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				disableOverride();
+			}
+		});
     
+        final CheckBox vacationCb = (CheckBox)findViewById(R.id.vacationCb);
+        vacationCb.setOnCheckedChangeListener(new OnCheckedChangeListener()
+		{
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+			{
+				if(isChecked)
+				{
+					enableOverride();
+					Toast.makeText(getApplicationContext(), "Select temperature in scroll wheel", 2000).show();
+				}
+				else
+					disableOverride();
+			}
+		});
+    }
+
     TimeLineView getActiveTimeLine()
     {
-    	switch(day)
+    	return getTimeLine(day);
+    }
+    TimeLineView getTimeLine(int dayIndex)
+    {
+    	switch(dayIndex)
     	{
     	case 0: return (TimeLineView)findViewById(R.id.timeLineView1);
     	case 1: return (TimeLineView)findViewById(R.id.timeLineView2);
@@ -205,5 +265,48 @@ public class ThermostatActivity extends Activity
     	actualTimeText.setText(df.format(actualHour) + ":" + df.format(actualMinute));
 
     	getActiveTimeLine().invalidate();
+    }
+
+    boolean vacationModeActive()
+    {
+    	return ((CheckBox)findViewById(R.id.vacationCb)).isChecked();
+    }
+    
+    void enableOverride()
+    {
+    	((Button)findViewById(R.id.disableOverrideButton)).setVisibility(Button.VISIBLE);
+
+    	String text = (String)getText(R.string.overrideEnabled);
+    	if(vacationModeActive())
+    		text += " (VACATION MODE)";
+    	else
+    		text += " UNTIL NEXT PLANNED SWITCH";
+    	
+    	((TextView)findViewById(R.id.overrideText)).setText(text);
+    	
+    	final LinearLayout timeLine = (LinearLayout)findViewById(R.id.timeLineLayout);
+    	timeLine.setAlpha(0.2f);
+    	for(int i = 0; i < 7; i++)
+    	{
+    		getTimeLine(i).setEnabled(false);
+    	}
+    	
+    	override = true;
+    }
+    void disableOverride()
+    {
+    	((Button)findViewById(R.id.disableOverrideButton)).setVisibility(Button.GONE);
+    	((TextView)findViewById(R.id.overrideText)).setText(R.string.overrideDisabled);
+    	
+    	final LinearLayout timeLine = (LinearLayout)findViewById(R.id.timeLineLayout);
+    	timeLine.setAlpha(1);
+    	for(int i = 0; i < 7; i++)
+    	{
+    		getTimeLine(i).setEnabled(true);
+    	}
+    	
+    	((CheckBox)findViewById(R.id.vacationCb)).setChecked(false);
+    	
+    	override = false;
     }
 }
