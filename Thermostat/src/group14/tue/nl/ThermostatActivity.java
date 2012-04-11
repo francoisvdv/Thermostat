@@ -1,28 +1,21 @@
 package group14.tue.nl;
 
 //import kankan.wheel.R;
-import kankan.wheel.widget.OnWheelChangedListener;
-import kankan.wheel.widget.WheelView;
-import kankan.wheel.*;
+import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import kankan.wheel.widget.OnWheelChangedListener;
 import kankan.wheel.widget.OnWheelScrollListener;
 import kankan.wheel.widget.WheelView;
-import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
 import kankan.wheel.widget.adapters.ArrayWheelAdapter;
-import group14.tue.nl.R;
-import kankan.wheel.widget.adapters.AbstractWheelTextAdapter;
-import kankan.wheel.widget.adapters.ArrayWheelAdapter;
-import kankan.wheel.widget.adapters.NumericWheelAdapter;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+import android.net.wifi.p2p.WifiP2pManager.ActionListener;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.method.DateTimeKeyListener;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 
@@ -32,6 +25,10 @@ public class ThermostatActivity extends Activity
     double dayTemp = 22;
     double nightTemp = 18;
 
+    Handler clock;
+    public static int day; //0 to 6
+    public static int minute; //0 to 59
+    
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -40,6 +37,35 @@ public class ThermostatActivity extends Activity
         setContentView(R.layout.main);
         setUpWheels();
         setUpTempSelectors();
+        setUpTimeLines();
+        
+        Calendar cal = Calendar.getInstance();
+        day = cal.get(Calendar.MONDAY) - 2;
+        minute = cal.get(Calendar.HOUR_OF_DAY) * 60 + cal.get(Calendar.MINUTE);
+        
+        clock = new Handler();
+        clock.postDelayed(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				minute++;
+				
+				if(minute >= 24 * 60)
+				{
+					minute = 0;
+					day++;
+					if(day == 7)
+					{
+						day = 0;
+					}
+				}
+				
+				timeUpdated();
+				
+				clock.postDelayed(this, 200);
+			}
+		}, 200);
     }
     void setUpTempSelectors(){
         final TextView dayTempDisp = (TextView)findViewById(R.id.dayDisp);
@@ -143,5 +169,41 @@ public class ThermostatActivity extends Activity
         });
         
     }
+    void setUpTimeLines()
+    {
+    	((TimeLineView)findViewById(R.id.timeLineView1)).dayIndex = 0;
+    	((TimeLineView)findViewById(R.id.timeLineView2)).dayIndex = 1;
+    	((TimeLineView)findViewById(R.id.timeLineView3)).dayIndex = 2;
+    	((TimeLineView)findViewById(R.id.timeLineView4)).dayIndex = 3;
+    	((TimeLineView)findViewById(R.id.timeLineView5)).dayIndex = 4;
+    	((TimeLineView)findViewById(R.id.timeLineView6)).dayIndex = 5;
+    	((TimeLineView)findViewById(R.id.timeLineView7)).dayIndex = 6;
+    }
     
+    TimeLineView getActiveTimeLine()
+    {
+    	switch(day)
+    	{
+    	case 0: return (TimeLineView)findViewById(R.id.timeLineView1);
+    	case 1: return (TimeLineView)findViewById(R.id.timeLineView2);
+    	case 2: return (TimeLineView)findViewById(R.id.timeLineView3);
+    	case 3: return (TimeLineView)findViewById(R.id.timeLineView4);
+    	case 4: return (TimeLineView)findViewById(R.id.timeLineView5);
+    	case 5: return (TimeLineView)findViewById(R.id.timeLineView6);
+    	case 6: return (TimeLineView)findViewById(R.id.timeLineView7);
+    	}
+    	
+    	return null;
+    }
+    
+    void timeUpdated()
+    {
+    	final TextView actualTimeText = (TextView)findViewById(R.id.actualTimeText);
+    	int actualHour = minute / 60;
+    	int actualMinute = minute % 60;
+    	DecimalFormat df = new DecimalFormat("00");
+    	actualTimeText.setText(df.format(actualHour) + ":" + df.format(actualMinute));
+
+    	getActiveTimeLine().invalidate();
+    }
 }

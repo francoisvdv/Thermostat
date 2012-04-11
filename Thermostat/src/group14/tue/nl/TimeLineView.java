@@ -35,6 +35,8 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	public final ArrayList<Pin> pins = new ArrayList<Pin>();
 	public final ArrayList<PinView> pinViews = new ArrayList<PinView>();
 	
+	public int dayIndex = 0;
+	
 	final int pinWidth = 30;
 	final int pinHeight = 60;
 	
@@ -216,6 +218,13 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 			canvas.drawRect(posX, 26, nextX, getHeight() - 5, paint);
 		}
 		
+		if(ThermostatActivity.day == dayIndex)
+		{
+			paint.setColor(Color.WHITE);
+			
+			float posX = timeToPosX(ThermostatActivity.minute);
+			canvas.drawLine(posX, 26, posX, getHeight() - 5, paint);
+		}
 	}
 	
 	float timeToPosX(int time)
