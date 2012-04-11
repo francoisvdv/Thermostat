@@ -90,7 +90,7 @@
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical" android:layout_marginLeft="10px" android:layout_marginRight="10px">
 
                             <TextView
@@ -113,7 +113,7 @@
 
                         <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:orientation="vertical" android:layout_marginLeft="10px" android:layout_marginRight="10px">
 
                             <TextView
@@ -133,6 +133,13 @@
                                 android:textColor="#000000"
                                 android:textSize="50dp" android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Long press on one of the time lines to add a temperature switch. Long press on a pin to remove it. To change the fixed midnight switch, long press the half pin."
+                            android:textAppearance="?android:attr/textAppearanceMedium" android:layout_gravity="center_vertical"/>
 
                     </LinearLayout>
 
