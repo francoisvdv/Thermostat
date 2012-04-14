@@ -31,7 +31,7 @@ public class PinView extends View
 	
 	public void setDay()
 	{
-		fillColor = Color.rgb(113, 128, 151);
+		fillColor = Color.rgb(219, 117, 31);
 		invalidate();
 	}
 	public void setNight()

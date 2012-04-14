@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, HelloThermostatActivity!</string>
     <string name="app_name">Thermostat</string>
-    <string name="currentTempString">Override current temperature</string>
-    <string name="label_nighttime">Set Night Temperature</string>
-    <string name="label_daytime">Set Day Temperature</string>
-    <string name="overrideEnabled">TEMPERATURE OVERRIDDEN</string>
-    <string name="overrideDisabled">SCROLL WHEEL TO ENABLE OVERRIDE</string>
+    <string name="label_nighttime">Set Night Temperature of Week Program</string>
+    <string name="label_daytime">Set Day Temperature of Week Program</string>
+    <string name="overrideEnabled">Following temperature set in temperature wheel</string>
+    <string name="overrideDisabled">Slide to change the current temperature</string>
 
 </resources>

@@ -40,17 +40,10 @@
                 android:orientation="vertical" >
 
                 <TextView
-                    android:id="@+id/overrideText"
                     android:layout_width="357dp"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceLarge" 
-                    android:gravity="center_vertical|center_horizontal" android:textColor="#454546" android:text="@string/overrideDisabled"/>
-
-                <Button
-                    android:id="@+id/disableOverrideButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Disable override" android:layout_gravity="center_horizontal" android:visibility="gone"/>
+                    android:gravity="center_vertical|center_horizontal" android:text="@string/overrideDisabled" android:textStyle="italic" android:textSize="18dp" android:id="@+id/overrideText" android:textColor="@color/black"/>
 
                 <LinearLayout
                     android:layout_width="355dp"
@@ -114,7 +107,7 @@
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical" android:layout_marginLeft="10px" android:layout_marginRight="10px">
+                            android:orientation="vertical" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:visibility="gone">
 
                             <TextView
                                 android:id="@+id/textView2"
@@ -138,163 +131,181 @@
                             android:id="@+id/textView3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Long press on one of the time lines to add a temperature switch. Long press on a pin to remove it. To change the fixed midnight switch, long press the half pin."
-                            android:textAppearance="?android:attr/textAppearanceMedium" android:layout_gravity="center_vertical" android:layout_marginLeft="30px" android:layout_marginRight="30px"/>
+                            android:text="To add a temperature change, long press the point in the weekplanner at which it has to occur. "
+                            android:textAppearance="?android:attr/textAppearanceMedium" android:layout_gravity="center_vertical" android:layout_marginLeft="30px" android:layout_marginRight="30px" android:textColor="#6e6e6e" android:textSize="18dp" android:textStyle="italic"/>
 
                     </LinearLayout>
-
+
                     <LinearLayout
-                        android:layout_width="882dp"
+                        android:id="@+id/timeLineLayout"
+                        android:layout_width="match_parent"
                         android:layout_height="fill_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical" android:id="@+id/timeLineLayout">
-
+                        android:layout_weight="0.86"
+                        android:orientation="vertical" >
+
+                        <ImageView
+                            android:id="@+id/imageView2"
+                            android:layout_width="850dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:paddingLeft="0dp"
+                            android:src="@drawable/timline_labels" />
+
                         <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                            android:layout_width="871dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" >
 
-                            <TextView
-                                android:id="@+id/textView1"
-                                android:layout_width="61dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical|center_horizontal"
-                                android:text="Mon"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#454546" />
-
-                            <group14.tue.nl.TimeLineView
-                                android:id="@+id/timeLineView1"
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content" >
-                            </group14.tue.nl.TimeLineView>
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                                <TextView
+                                    android:id="@+id/textView1"
+                                    android:layout_width="61dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:text="Mon"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="#454546" />
 
-                            <TextView
-                                android:id="@+id/TextView01"
-                                android:layout_width="61dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical|center_horizontal"
-                                android:text="Tue"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#454546" />
+                                <group14.tue.nl.TimeLineView
+                                    android:id="@+id/timeLineView1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content" >
+                                </group14.tue.nl.TimeLineView>
+                            </LinearLayout>
 
-                            <group14.tue.nl.TimeLineView
-                                android:id="@+id/timeLineView2"
-                                android:layout_width="fill_parent"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content" >
-                            </group14.tue.nl.TimeLineView>
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                                <TextView
+                                    android:id="@+id/TextView01"
+                                    android:layout_width="61dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:text="Tue"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="#454546" />
 
-                            <TextView
-                                android:id="@+id/TextView02"
-                                android:layout_width="61dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical|center_horizontal"
-                                android:text="Wen"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#454546" />
+                                <group14.tue.nl.TimeLineView
+                                    android:id="@+id/timeLineView2"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content" >
+                                </group14.tue.nl.TimeLineView>
+                            </LinearLayout>
 
-                            <group14.tue.nl.TimeLineView
-                                android:id="@+id/timeLineView3"
-                                android:layout_width="fill_parent"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content" >
-                            </group14.tue.nl.TimeLineView>
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                                <TextView
+                                    android:id="@+id/TextView02"
+                                    android:layout_width="61dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:text="Wen"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="#454546" />
 
-                            <TextView
-                                android:id="@+id/TextView03"
-                                android:layout_width="61dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical|center_horizontal"
-                                android:text="Thu"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#454546" />
+                                <group14.tue.nl.TimeLineView
+                                    android:id="@+id/timeLineView3"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content" >
+                                </group14.tue.nl.TimeLineView>
+                            </LinearLayout>
 
-                            <group14.tue.nl.TimeLineView
-                                android:id="@+id/timeLineView4"
-                                android:layout_width="fill_parent"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content" >
-                            </group14.tue.nl.TimeLineView>
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                                <TextView
+                                    android:id="@+id/TextView03"
+                                    android:layout_width="61dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:text="Thu"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="#454546" />
 
-                            <TextView
-                                android:id="@+id/TextView04"
-                                android:layout_width="61dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical|center_horizontal"
-                                android:text="Fri"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#454546" />
+                                <group14.tue.nl.TimeLineView
+                                    android:id="@+id/timeLineView4"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content" >
+                                </group14.tue.nl.TimeLineView>
+                            </LinearLayout>
 
-                            <group14.tue.nl.TimeLineView
-                                android:id="@+id/timeLineView5"
-                                android:layout_width="fill_parent"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content" >
-                            </group14.tue.nl.TimeLineView>
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                                <TextView
+                                    android:id="@+id/TextView04"
+                                    android:layout_width="61dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:text="Fri"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="#454546" />
 
-                            <TextView
-                                android:id="@+id/TextView05"
-                                android:layout_width="61dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical|center_horizontal"
-                                android:text="Sat"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#454546" />
+                                <group14.tue.nl.TimeLineView
+                                    android:id="@+id/timeLineView5"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content" >
+                                </group14.tue.nl.TimeLineView>
+                            </LinearLayout>
 
-                            <group14.tue.nl.TimeLineView
-                                android:id="@+id/timeLineView6"
-                                android:layout_width="fill_parent"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content" >
-                            </group14.tue.nl.TimeLineView>
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" >
+                                <TextView
+                                    android:id="@+id/TextView05"
+                                    android:layout_width="61dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:text="Sat"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="#454546" />
 
-                            <TextView
-                                android:id="@+id/TextView06"
-                                android:layout_width="61dp"
-                                android:layout_height="match_parent"
-                                android:gravity="center_vertical|center_horizontal"
-                                android:text="Sun"
-                                android:textAppearance="?android:attr/textAppearanceLarge"
-                                android:textColor="#454546" />
+                                <group14.tue.nl.TimeLineView
+                                    android:id="@+id/timeLineView6"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content" >
+                                </group14.tue.nl.TimeLineView>
+                            </LinearLayout>
 
-                            <group14.tue.nl.TimeLineView
-                                android:id="@+id/timeLineView7"
-                                android:layout_width="fill_parent"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content" >
-                            </group14.tue.nl.TimeLineView>
-                        </LinearLayout>
 
+                                <TextView
+                                    android:id="@+id/TextView06"
+                                    android:layout_width="61dp"
+                                    android:layout_height="match_parent"
+                                    android:gravity="center_vertical|center_horizontal"
+                                    android:text="Sun"
+                                    android:textAppearance="?android:attr/textAppearanceLarge"
+                                    android:textColor="#454546" />
+
+                                <group14.tue.nl.TimeLineView
+                                    android:id="@+id/timeLineView7"
+                                    android:layout_width="fill_parent"
+                                    android:layout_height="wrap_content" >
+                                </group14.tue.nl.TimeLineView>
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
 
-
-
+                <Button
+                    android:id="@+id/disableOverrideButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.14"
+                    android:text="Return to week program" android:background="@color/orange" android:visibility="gone"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -37,8 +37,8 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	
 	public int dayIndex = 0;
 	
-	final int pinWidth = 30;
-	final int pinHeight = 60;
+	final int pinWidth = 20;
+	final int pinHeight = 25;
 	
 	float mouseX;
 
@@ -155,7 +155,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 		
 		if(pins.size() >= 11)
 		{
-			Toast msg = Toast.makeText(mContext, "You can add only up to 5 day-to-night and 5 night-to-day transitions to one day.", 3000);
+			Toast msg = Toast.makeText(mContext, "You can only add up to 5 day-to-night and 5 night-to-day changes to a single day.", 3000);
 			msg.show();
 			return true;
 		}
@@ -243,7 +243,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	}
 	int getDayColor()
 	{
-		return Color.rgb(113, 128, 151);
+		return Color.rgb(219, 117, 31);
 	}
 	int getNightColor()
 	{

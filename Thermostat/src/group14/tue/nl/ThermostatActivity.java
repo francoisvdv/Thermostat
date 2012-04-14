@@ -82,7 +82,7 @@ public class ThermostatActivity extends Activity
     	final TextView nightTempButtonDec = (TextView)findViewById(R.id.nightTempDec);
     	final TextView dayTempButtonInc = (TextView)findViewById(R.id.dayTempInc);
     	final TextView dayTempButtonDec = (TextView)findViewById(R.id.dayTempDec);
-    	
+
     	nightTempDisp.setText(Double.toString(nightTemp)+" \u2103");
     	dayTempDisp.setText(Double.toString(dayTemp)+" \u2103");
 
@@ -156,6 +156,8 @@ public class ThermostatActivity extends Activity
         currentTemp.setText(""+temperatures[170] + " \u2103");
         tempWheel.setViewAdapter(new ArrayWheelAdapter<Double>(this, temperatures ));
         tempWheel.setCurrentItem(170);
+        
+
         
         tempWheel.addChangingListener(new OnWheelChangedListener() 
         {
