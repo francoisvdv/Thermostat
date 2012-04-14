@@ -29,13 +29,15 @@ public class ThermostatActivity extends Activity
 {
     Handler clock;
     public static int day; //0 to 6
-    public static int minute; //0 to 59
+    public static int minute; //0 to 24 * 60
     public static boolean override;
     
     private boolean scrolling = false;
+    private Double[] temperatures;
     double dayTemp = 22;
     double nightTemp = 18;
 
+    Pin activePin;
     
     /** Called when the activity is first created. */
     @Override
@@ -149,7 +151,7 @@ public class ThermostatActivity extends Activity
         maxtemp = 30;
         increment = 0.1;
         
-        final Double[] temperatures = new Double[(int)((maxtemp-mintemp)/increment)];
+        temperatures = new Double[(int)((maxtemp-mintemp)/increment)];
         for(int i = 0; mintemp <= maxtemp; mintemp = (mintemp+increment)){
         	temperatures[i] = (double)Math.round(mintemp*10)/10;
         	i++;
@@ -268,11 +270,35 @@ public class ThermostatActivity extends Activity
     	actualTimeText.setText(df.format(actualHour) + ":" + df.format(actualMinute));
 
     	getActiveTimeLine().invalidate();
+    	
+    	Pin p = getActiveTimeLine().getPin(minute);
+    	if(activePin != p && (activePin = p) != null)
+    	{
+    		//Temperature change
+    		if(!vacationModeActive())
+    		{
+    			if(override)
+    				disableOverride();
+    			
+    			setCurrentTemperature(p.day ? dayTemp : nightTemp);
+    		}
+    	}
     }
 
     boolean vacationModeActive()
     {
     	return ((CheckBox)findViewById(R.id.vacationCb)).isChecked();
+    }
+    
+    void setCurrentTemperature(double temperature)
+    {
+		int index = 0;
+		for(int i = 0; i < temperatures.length; i++)
+		{
+			if(temperatures[i] == temperature)
+				index = i;
+		}
+		((WheelView)findViewById(R.id.tempWheel)).setCurrentItem(index);
     }
     
     void enableOverride()

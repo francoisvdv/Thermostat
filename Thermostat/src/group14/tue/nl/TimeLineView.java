@@ -227,6 +227,18 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 		}
 	}
 	
+	public Pin getPin(int time)
+	{
+		Pin ret = null;
+		for(Pin p : pins)
+		{
+			if(time >= p.time)
+				ret = p;
+		}
+		
+		return ret;
+	}
+	
 	float timeToPosX(int time)
 	{
 		float max = 24 * 60;
