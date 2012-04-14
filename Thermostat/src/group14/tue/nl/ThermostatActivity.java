@@ -48,7 +48,7 @@ public class ThermostatActivity extends Activity
         setUpOverrideEvents();
         
         Calendar cal = Calendar.getInstance();
-        day = cal.get(Calendar.MONDAY) - 2;
+        day = cal.get(Calendar.DAY_OF_WEEK) - 2;
         minute = cal.get(Calendar.HOUR_OF_DAY) * 60 + cal.get(Calendar.MINUTE);
         
         clock = new Handler();
