@@ -37,8 +37,8 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	
 	public int dayIndex = 0;
 	
-	final int pinWidth = 20;
-	final int pinHeight = 25;
+	final int pinWidth = 30;
+	final int pinHeight = 60;
 	
 	float mouseX;
 

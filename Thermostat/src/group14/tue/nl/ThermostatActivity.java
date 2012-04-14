@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -284,7 +285,9 @@ public class ThermostatActivity extends Activity
     	else
     		text += " UNTIL NEXT PLANNED SWITCH";
     	
-    	((TextView)findViewById(R.id.overrideText)).setText(text);
+    	TextView overrideText = (TextView)findViewById(R.id.overrideText);
+    	overrideText.setText(text);
+    	overrideText.getLayoutParams().height = LayoutParams.WRAP_CONTENT;
     	
     	final LinearLayout timeLine = (LinearLayout)findViewById(R.id.timeLineLayout);
     	timeLine.setAlpha(0.2f);
@@ -298,7 +301,10 @@ public class ThermostatActivity extends Activity
     void disableOverride()
     {
     	((Button)findViewById(R.id.disableOverrideButton)).setVisibility(Button.GONE);
-    	((TextView)findViewById(R.id.overrideText)).setText(R.string.overrideDisabled);
+
+    	TextView overrideText = (TextView)findViewById(R.id.overrideText);
+    	overrideText.setText(R.string.overrideDisabled);
+    	overrideText.getLayoutParams().height = LayoutParams.FILL_PARENT;
     	
     	final LinearLayout timeLine = (LinearLayout)findViewById(R.id.timeLineLayout);
     	timeLine.setAlpha(1);
