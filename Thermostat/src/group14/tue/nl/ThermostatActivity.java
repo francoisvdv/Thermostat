@@ -51,7 +51,7 @@ public class ThermostatActivity extends Activity
         setUpOverrideEvents();
         
         Calendar cal = Calendar.getInstance();
-        day = cal.get(Calendar.DAY_OF_WEEK) - 2;
+        day = cal.get(Calendar.DAY_OF_WEEK) - 1;
         minute = cal.get(Calendar.HOUR_OF_DAY) * 60 + cal.get(Calendar.MINUTE);
         
         clock = new Handler();
@@ -191,13 +191,13 @@ public class ThermostatActivity extends Activity
     }
     void setUpTimeLines()
     {
-    	((TimeLineView)findViewById(R.id.timeLineView1)).dayIndex = 0;
-    	((TimeLineView)findViewById(R.id.timeLineView2)).dayIndex = 1;
-    	((TimeLineView)findViewById(R.id.timeLineView3)).dayIndex = 2;
-    	((TimeLineView)findViewById(R.id.timeLineView4)).dayIndex = 3;
-    	((TimeLineView)findViewById(R.id.timeLineView5)).dayIndex = 4;
-    	((TimeLineView)findViewById(R.id.timeLineView6)).dayIndex = 5;
-    	((TimeLineView)findViewById(R.id.timeLineView7)).dayIndex = 6;
+    	((TimeLineView)findViewById(R.id.timeLineView7)).dayIndex = 0;
+    	((TimeLineView)findViewById(R.id.timeLineView1)).dayIndex = 1;
+    	((TimeLineView)findViewById(R.id.timeLineView2)).dayIndex = 2;
+    	((TimeLineView)findViewById(R.id.timeLineView3)).dayIndex = 3;
+    	((TimeLineView)findViewById(R.id.timeLineView4)).dayIndex = 4;
+    	((TimeLineView)findViewById(R.id.timeLineView5)).dayIndex = 5;
+    	((TimeLineView)findViewById(R.id.timeLineView6)).dayIndex = 6;
     }
     void setUpOverrideEvents()
     {
@@ -249,13 +249,13 @@ public class ThermostatActivity extends Activity
     {
     	switch(dayIndex)
     	{
-    	case 0: return (TimeLineView)findViewById(R.id.timeLineView1);
-    	case 1: return (TimeLineView)findViewById(R.id.timeLineView2);
-    	case 2: return (TimeLineView)findViewById(R.id.timeLineView3);
-    	case 3: return (TimeLineView)findViewById(R.id.timeLineView4);
-    	case 4: return (TimeLineView)findViewById(R.id.timeLineView5);
-    	case 5: return (TimeLineView)findViewById(R.id.timeLineView6);
-    	case 6: return (TimeLineView)findViewById(R.id.timeLineView7);
+    	case 0: return (TimeLineView)findViewById(R.id.timeLineView7); //SUNDAY
+    	case 1: return (TimeLineView)findViewById(R.id.timeLineView1);
+    	case 2: return (TimeLineView)findViewById(R.id.timeLineView2);
+    	case 3: return (TimeLineView)findViewById(R.id.timeLineView3);
+    	case 4: return (TimeLineView)findViewById(R.id.timeLineView4);
+    	case 5: return (TimeLineView)findViewById(R.id.timeLineView5);
+    	case 6: return (TimeLineView)findViewById(R.id.timeLineView6); //SATURDAY
     	}
     	
     	return null;
@@ -271,17 +271,17 @@ public class ThermostatActivity extends Activity
 
     	getActiveTimeLine().invalidate();
     	
-    	Pin p = getActiveTimeLine().getPin(minute);
-    	if(activePin != p && (activePin = p) != null)
+    	if(!vacationModeActive())
     	{
-    		//Temperature change
-    		if(!vacationModeActive())
-    		{
+	    	Pin p = getActiveTimeLine().getPin(minute);
+	    	if(activePin != p && (activePin = p) != null)
+	    	{
+	    		//Temperature change
     			if(override)
     				disableOverride();
     			
     			setCurrentTemperature(p.day ? dayTemp : nightTemp);
-    		}
+	    	}
     	}
     }
 
