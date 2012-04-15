@@ -309,7 +309,7 @@ public class ThermostatActivity extends Activity
     	if(vacationModeActive())
     		text += " (VACATION MODE)";
     	else
-    		text += " UNTIL NEXT PLANNED SWITCH";
+    		text += " until next temp. change on week program";
     	
     	TextView overrideText = (TextView)findViewById(R.id.overrideText);
     	overrideText.setText(text);
