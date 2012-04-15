@@ -11,16 +11,21 @@ import kankan.wheel.widget.OnWheelScrollListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
@@ -52,6 +57,7 @@ public class ThermostatActivity extends Activity
         setUpTempSelectors();
         setUpTimeLines();
         setUpOverrideEvents();
+        setUpHelpMenu();
         
         Calendar cal = Calendar.getInstance();
         day = cal.get(Calendar.DAY_OF_WEEK) - 1;
@@ -82,6 +88,40 @@ public class ThermostatActivity extends Activity
 		}, 200);
 
         startActualTemperatureTransition();
+    }
+    void setUpHelpMenu(){
+    	final ImageButton helpButton = (ImageButton)findViewById(R.id.helpButton);
+  
+    	helpButton.setOnClickListener(new View.OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				Log.v("test", "test");
+				onHelpClick();
+				
+				
+}
+		});      
+
+    }
+    void onHelpClick(){
+
+    	final Dialog helpDialog = new Dialog(this);
+
+    	helpDialog.setContentView(R.layout.helpdialog);
+    	helpDialog.setTitle("Help Information");
+    	Button returnButton = (Button)helpDialog.findViewById(R.id.returnToApp);
+		returnButton.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				helpDialog.dismiss();
+				
+			
+			}
+		});
+    	helpDialog.show();
+    	
     }
     void setUpTempSelectors(){
         final TextView dayTempDisp = (TextView)findViewById(R.id.dayDisp);

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="500dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_margin="5dp"
+        android:text="To add a temperature change, long press the point in the weekplanner at which it has to occur, long press the leftmost pin to alter the temperaturechange at 00:00." />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/returnToApp"
+            android:layout_width="228dp"
+            android:layout_height="wrap_content"
+            android:tag="Tap here to open the full documentation"
+            android:text="Return" />
+
+        <Button
+            android:id="@+id/openDocs"
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:text="Open full documentation" />
+    </LinearLayout>
+
+</LinearLayout>

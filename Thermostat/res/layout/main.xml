@@ -139,12 +139,11 @@
                                 android:textSize="50dp" android:layout_gravity="center_horizontal"/>
                         </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/textView3"
+                        <ImageButton
+                            android:id="@+id/helpButton"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="To add a temperature change, long press the point in the weekplanner at which it has to occur. "
-                            android:textAppearance="?android:attr/textAppearanceMedium" android:layout_gravity="center_vertical" android:layout_marginLeft="30px" android:layout_marginRight="30px" android:textColor="#6e6e6e" android:textSize="18dp" android:textStyle="italic"/>
+                            android:src="@drawable/q_mrk" android:layout_marginLeft="625dp" android:layout_marginTop="10dp"/>
 
                     </LinearLayout>
 
