@@ -46,7 +46,7 @@ public class ThermostatActivity extends Activity
     Handler heater;
     double dayTemp = 22;
     double nightTemp = 18;
-    double actualTemp = 18;
+    double actualTemp = 22;
     
     Pin activePin;
     
