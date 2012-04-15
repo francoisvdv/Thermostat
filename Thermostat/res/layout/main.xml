@@ -64,7 +64,7 @@
                         android:layout_marginBottom="5px"
                         android:layout_marginTop="5px"
                         android:background="@color/orange"
-                        android:text="Tap here to return to week program" android:visibility="gone"/>
+                        android:text="Tap here to re-enable week program" android:visibility="gone"/>
                 </LinearLayout>
 
                 <kankan.wheel.widget.WheelView
