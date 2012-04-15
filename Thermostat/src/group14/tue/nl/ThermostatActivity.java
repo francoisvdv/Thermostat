@@ -148,7 +148,7 @@ public class ThermostatActivity extends Activity
         double mintemp, maxtemp, increment;
                
         mintemp = 5;
-        maxtemp = 30;
+        maxtemp = 30.1;
         increment = 0.1;
         
         temperatures = new Double[(int)((maxtemp-mintemp)/increment)];

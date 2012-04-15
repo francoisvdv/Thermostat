@@ -57,9 +57,10 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 		setOnLongClickListener(this);
 
 		pins.add(new Pin(0, startDay));
-		rebuildPins();
+		pins.add(new Pin(6 * 60, true));
+		pins.add(new Pin(22 * 60, false));
 	}
-	
+
 	public void rebuildPins()
 	{
 		for(PinView pv : pinViews)
@@ -90,7 +91,7 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 			p.day = day;
 			
 			float posX = timeToPosX(p.time);
-			
+
 			PinView pv = createPin(pins.indexOf(p) != 0);
 			pv.pin = p;
 			pv.setX(posX - pinWidth / 2);
@@ -110,7 +111,10 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	public PinView createPin(boolean removeOnHold)
 	{
 		final PinView pinView = new PinView(getContext(), null);
+		pinView.setMinimumWidth(pinWidth);
+		pinView.setMinimumHeight(pinHeight);
 		pinView.setLayoutParams(new LayoutParams(pinWidth, pinHeight));
+		
 		if(removeOnHold)
 		{
 			pinView.setOnLongClickListener(new OnLongClickListener()
@@ -199,9 +203,12 @@ public class TimeLineView extends RelativeLayout implements OnLongClickListener,
 	{
 		// TODO Auto-generated method stub
 		super.onDraw(canvas);
+
+		if(pins.size() != pinViews.size())
+			rebuildPins();
 		
 		Paint paint = new Paint();
-		
+
 		for(Pin p : pins)
 		{
 			paint.setColor(p.day ? getDayColor() : getNightColor());

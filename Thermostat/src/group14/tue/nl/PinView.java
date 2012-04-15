@@ -87,5 +87,10 @@ public class PinView extends View
 		canvas.drawPath(path, strokePaint);
 		
 		canvas.drawLine(lineX1, lineY1, lineX2, lineY2, strokePaint);
+		
+		
+		int i = 0;
+		canvas.drawText(getWidth() + " | " + getHeight(), i += 100, 0, fillPaint);
+		
 	}
 }
