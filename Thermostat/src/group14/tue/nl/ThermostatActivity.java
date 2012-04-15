@@ -78,9 +78,7 @@ public class ThermostatActivity extends Activity
 				clock.postDelayed(this, 200);
 			}
 		}, 200);
-    
-        heater = new Handler();
-        
+
         startActualTemperatureTransition();
     }
     void setUpTempSelectors(){
@@ -299,16 +297,17 @@ public class ThermostatActivity extends Activity
     void setActualTemperature(double temp)
     {
     	actualTemp = temp;
-    	DecimalFormat df = new DecimalFormat("#.#");
+    	DecimalFormat df = new DecimalFormat("#.0");
     	String text = df.format(actualTemp) + " \u2103";
     	((TextView)findViewById(R.id.actualTempText)).setText(text);
     }
     
     void startActualTemperatureTransition()
     {
-    	if(getTargetTemperature() == getActualTemperature())
+    	if(heater != null || getTargetTemperature() == getActualTemperature())
     		return;
     	
+        heater = new Handler();
     	heater.postDelayed(new Runnable()
 		{
 			@Override
@@ -321,7 +320,7 @@ public class ThermostatActivity extends Activity
 					if(getTargetTemperature() > getActualTemperature())
 						heater.postDelayed(this, 1000);
 					else
-						setActualTemperature(getTargetTemperature());
+						stop();
 				}
 				else if(getTargetTemperature() < getActualTemperature())
 				{
@@ -330,9 +329,14 @@ public class ThermostatActivity extends Activity
 					if(getTargetTemperature() < getActualTemperature())
 						heater.postDelayed(this, 1000);
 					else
-						setActualTemperature(getTargetTemperature());
+						stop();
 				}
-
+			}
+			
+			void stop()
+			{
+				setActualTemperature(getTargetTemperature());
+				heater = null;
 			}
 		}, 1000);
     }
@@ -376,6 +380,12 @@ public class ThermostatActivity extends Activity
     	}
     	
     	((CheckBox)findViewById(R.id.vacationCb)).setChecked(false);
+    	
+    	if(activePin != null)
+    	{
+    		setTargetTemperature(activePin.day ? dayTemp : nightTemp);
+    		startActualTemperatureTransition();
+    	}
     	
     	override = false;
     }
