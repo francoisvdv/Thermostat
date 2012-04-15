@@ -31,12 +31,13 @@ public class ThermostatActivity extends Activity
     public static int day; //0 to 6
     public static int minute; //0 to 24 * 60
     public static boolean override;
-    
-    private boolean scrolling = false;
+
     private Double[] temperatures;
+    Handler heater;
     double dayTemp = 22;
     double nightTemp = 18;
-
+    double actualTemp = 18;
+    
     Pin activePin;
     
     /** Called when the activity is first created. */
@@ -77,6 +78,10 @@ public class ThermostatActivity extends Activity
 				clock.postDelayed(this, 200);
 			}
 		}, 200);
+    
+        heater = new Handler();
+        
+        startActualTemperatureTransition();
     }
     void setUpTempSelectors(){
         final TextView dayTempDisp = (TextView)findViewById(R.id.dayDisp);
@@ -143,7 +148,6 @@ public class ThermostatActivity extends Activity
     }
     void setUpWheels()
     {
-    	final TextView currentTemp = (TextView)findViewById(R.id.actualTempText);
         final WheelView tempWheel = (WheelView)findViewById(R.id.tempWheel);
         double mintemp, maxtemp, increment;
                
@@ -156,35 +160,17 @@ public class ThermostatActivity extends Activity
         	temperatures[i] = (double)Math.round(mintemp*10)/10;
         	i++;
         }
-        currentTemp.setText(""+temperatures[170] + " \u2103");
         tempWheel.setViewAdapter(new ArrayWheelAdapter<Double>(this, temperatures ));
         tempWheel.setCurrentItem(170);
-        
 
-        
-        tempWheel.addChangingListener(new OnWheelChangedListener() 
-        {
-        	@Override
-			public void onChanged(WheelView tempWheel, int oldValue, int newValue)
-			{
-			    if (scrolling)
-			    {
-			        currentTemp.setText(Double.toString(temperatures[newValue])+" \u2103");
-			    }
-			}
-		});
-        
         tempWheel.addScrollingListener( new OnWheelScrollListener()
         {
         	@Override
-            public void onScrollingStarted(WheelView tempWheel)
-            {
-                scrolling = true;
-            }
+            public void onScrollingStarted(WheelView tempWheel){}
             @Override
             public void onScrollingFinished(WheelView tempWheel)
             {
-                scrolling = false;
+                startActualTemperatureTransition();
             }
         });
         
@@ -280,7 +266,8 @@ public class ThermostatActivity extends Activity
     			if(override)
     				disableOverride();
     			
-    			setCurrentTemperature(p.day ? dayTemp : nightTemp);
+    			setTargetTemperature(p.day ? dayTemp : nightTemp);
+    			startActualTemperatureTransition();
 	    	}
     	}
     }
@@ -290,7 +277,11 @@ public class ThermostatActivity extends Activity
     	return ((CheckBox)findViewById(R.id.vacationCb)).isChecked();
     }
     
-    void setCurrentTemperature(double temperature)
+    double getTargetTemperature()
+    {
+    	return temperatures[((WheelView)findViewById(R.id.tempWheel)).getCurrentItem()];
+    }
+    void setTargetTemperature(double temperature)
     {
 		int index = 0;
 		for(int i = 0; i < temperatures.length; i++)
@@ -299,6 +290,51 @@ public class ThermostatActivity extends Activity
 				index = i;
 		}
 		((WheelView)findViewById(R.id.tempWheel)).setCurrentItem(index);
+    }
+    
+    double getActualTemperature()
+    {
+    	return actualTemp;
+    }
+    void setActualTemperature(double temp)
+    {
+    	actualTemp = temp;
+    	DecimalFormat df = new DecimalFormat("#.#");
+    	String text = df.format(actualTemp) + " \u2103";
+    	((TextView)findViewById(R.id.actualTempText)).setText(text);
+    }
+    
+    void startActualTemperatureTransition()
+    {
+    	if(getTargetTemperature() == getActualTemperature())
+    		return;
+    	
+    	heater.postDelayed(new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				if(getTargetTemperature() > getActualTemperature())
+				{
+					setActualTemperature(getActualTemperature() + 0.1);
+					
+					if(getTargetTemperature() > getActualTemperature())
+						heater.postDelayed(this, 1000);
+					else
+						setActualTemperature(getTargetTemperature());
+				}
+				else if(getTargetTemperature() < getActualTemperature())
+				{
+					setActualTemperature(getActualTemperature() - 0.1);
+
+					if(getTargetTemperature() < getActualTemperature())
+						heater.postDelayed(this, 1000);
+					else
+						setActualTemperature(getTargetTemperature());
+				}
+
+			}
+		}, 1000);
     }
     
     void enableOverride()
