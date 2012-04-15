@@ -123,16 +123,7 @@ public class ThermostatActivity extends Activity
 			}
 		});
 		
-		Button fullManualButton = (Button)helpDialog.findViewById(R.id.openDocs);
-		fullManualButton.setOnClickListener(new OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				openPdf(getApplicationContext(), "android.resource://group14.tue.nl/raw/documentation_app.pdf");
-							
-			}
-		});
+
     	helpDialog.show();
     	
     }
@@ -446,12 +437,5 @@ public class ThermostatActivity extends Activity
     	
     	override = false;
     }
-    public static void openPdf(Context context, String filename) {
-	    File targetFile = new File(filename);
-	    Uri targetUri = Uri.fromFile(targetFile);
-	    Intent intent = new Intent(Intent.ACTION_VIEW);
-	    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	    intent.setDataAndType(targetUri, "application/pdf");
-	    context.startActivity(intent);
-	}
+
 }

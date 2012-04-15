@@ -20,13 +20,7 @@
             android:layout_width="228dp"
             android:layout_height="wrap_content"
             android:tag="Tap here to open the full documentation"
-            android:text="Return" />
-
-        <Button
-            android:id="@+id/openDocs"
-            android:layout_width="228dp"
-            android:layout_height="wrap_content"
-            android:text="Open full documentation" />
+            android:text="Back" />
     </LinearLayout>
 
 </LinearLayout>
