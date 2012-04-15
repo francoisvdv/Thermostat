@@ -13,10 +13,9 @@ import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.TextPaint;
+import android.view.Gravity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -131,10 +130,7 @@ public class ThermostatActivity extends Activity
     	final TextView dayTempButtonInc = (TextView)findViewById(R.id.dayTempInc);
     	final TextView dayTempButtonDec = (TextView)findViewById(R.id.dayTempDec);
 
-    	
-    	
-    	nightTempDisp.setText(Double.toString(nightTemp)+" \u2103"); 
-    	
+    	nightTempDisp.setText(Double.toString(nightTemp)+" \u2103");
     	dayTempDisp.setText(Double.toString(dayTemp)+" \u2103");
 
 
@@ -262,7 +258,9 @@ public class ThermostatActivity extends Activity
 				if(isChecked)
 				{
 					enableOverride();
-					Toast.makeText(getApplicationContext(), "Select temperature in scroll wheel", 2000).show();
+					Toast t = Toast.makeText(getApplicationContext(), "Select temperature in scroll wheel", Toast.LENGTH_LONG);
+					t.setGravity(Gravity.CENTER, 0, 0);
+					t.show();
 				}
 				else
 					disableOverride();
