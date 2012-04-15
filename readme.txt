@@ -1,3 +1,9 @@
+THERMOSTAT
+
+Human Technology Interaction
+Govert Brinkmann (0783311)
+Francois van der Ven (0782851)
+
 To install the Thermostat application on the tablet:
 
 1.	Copy the APK file to your memory card of your Android device.
