@@ -13,6 +13,7 @@ import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -217,7 +218,9 @@ public class ThermostatActivity extends Activity
 				if(isChecked)
 				{
 					enableOverride();
-					Toast.makeText(getApplicationContext(), "Select temperature in scroll wheel", 2000).show();
+					Toast t = Toast.makeText(getApplicationContext(), "Select temperature in scroll wheel", Toast.LENGTH_LONG);
+					t.setGravity(Gravity.CENTER, 0, 0);
+					t.show();
 				}
 				else
 					disableOverride();
