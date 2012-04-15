@@ -1,6 +1,7 @@
 package group14.tue.nl;
 
 //import kankan.wheel.R;
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Timer;
@@ -13,7 +14,10 @@ import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.view.Gravity;
 import android.util.Log;
@@ -94,7 +98,6 @@ public class ThermostatActivity extends Activity
     	helpButton.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
-				Log.v("test", "test");
 				onHelpClick();
 				
 				
@@ -117,6 +120,17 @@ public class ThermostatActivity extends Activity
 				helpDialog.dismiss();
 				
 			
+			}
+		});
+		
+		Button fullManualButton = (Button)helpDialog.findViewById(R.id.openDocs);
+		fullManualButton.setOnClickListener(new OnClickListener()
+		{
+			@Override
+			public void onClick(View v)
+			{
+				openPdf(getApplicationContext(), "/android.resource://group14.tue.nl/raw/documentation_app.pdf");
+							
 			}
 		});
     	helpDialog.show();
@@ -258,7 +272,7 @@ public class ThermostatActivity extends Activity
 				if(isChecked)
 				{
 					enableOverride();
-					Toast t = Toast.makeText(getApplicationContext(), "Select temperature in scroll wheel", Toast.LENGTH_LONG);
+					Toast t = Toast.makeText(getApplicationContext(), "Select the vacation temperature in the scroll wheel to the left", Toast.LENGTH_LONG);
 					t.setGravity(Gravity.CENTER, 0, 0);
 					t.show();
 				}
@@ -432,4 +446,11 @@ public class ThermostatActivity extends Activity
     	
     	override = false;
     }
+    public static void openPdf(Context context, String filename) {
+	    File targetFile = new File(filename);
+	    Uri targetUri = Uri.fromFile(targetFile);
+	    Intent intent = new Intent(Intent.ACTION_VIEW);
+	    intent.setDataAndType(targetUri, "application/pdf");
+	    context.startActivity(intent);
+	}
 }
