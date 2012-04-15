@@ -11,8 +11,10 @@ import kankan.wheel.widget.OnWheelScrollListener;
 import kankan.wheel.widget.WheelView;
 import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextPaint;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
@@ -86,7 +88,10 @@ public class ThermostatActivity extends Activity
     	final TextView dayTempButtonInc = (TextView)findViewById(R.id.dayTempInc);
     	final TextView dayTempButtonDec = (TextView)findViewById(R.id.dayTempDec);
 
-    	nightTempDisp.setText(Double.toString(nightTemp)+" \u2103");
+    	
+    	
+    	nightTempDisp.setText(Double.toString(nightTemp)+" \u2103"); 
+    	
     	dayTempDisp.setText(Double.toString(dayTemp)+" \u2103");
 
 

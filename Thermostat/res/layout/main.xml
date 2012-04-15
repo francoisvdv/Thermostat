@@ -366,7 +366,7 @@
                             android:ems="10"
                             android:focusable="false"
                             android:inputType="numberDecimal"
-                            android:textIsSelectable="false" >
+                            android:textIsSelectable="false" android:textColor="@color/orange">
 
                             <requestFocus />
                         </EditText>
@@ -448,7 +448,7 @@
                             android:ems="10"
                             android:focusable="false"
                             android:inputType="numberDecimal"
-                            android:textIsSelectable="false" />
+                            android:textIsSelectable="false" android:textColor="@color/deep_blue"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
