@@ -9,11 +9,11 @@
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:layout_margin="5dp"
-        android:text="To add a temperature change, long press the point in the weekplanner at which it has to occur, long press the leftmost pin to alter the temperaturechange at 00:00." />
+        android:text="To add a temperature change, long press the point in the weekplanner at which it has to occur. Long press the leftmost pin to alter the temperature change at 00:00." />
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content" android:layout_gravity="center_horizontal">
 
         <Button
             android:id="@+id/returnToApp"
@@ -24,7 +24,7 @@
 
         <Button
             android:id="@+id/openDocs"
-            android:layout_width="202dp"
+            android:layout_width="228dp"
             android:layout_height="wrap_content"
             android:text="Open full documentation" />
     </LinearLayout>
